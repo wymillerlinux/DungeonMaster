@@ -8,7 +8,7 @@ First, clone the repo with a `git clone https://github.com/wymillerlinux/Dungeon
 
 Second, install a IDE if you want to review, edit or contribute to my code. If you're on MS Windows, install [Visual Studio 2017](https://www.visualstudio.com/) and follow the on-screen prompts. If you are on a Mac, you can either download [Xamarin](https://www.xamarin.com/) or Mono/MonoDevelop. If you are on Linux or FreeBSD, download MonoDevelop with your package manager.<br>
 
-No other dependices are needed at this time. 
+No other dependencies are needed at this time. 
 
 ## Running
 Once you have loaded your IDE with the project, all that has to be done is pressing F5!
