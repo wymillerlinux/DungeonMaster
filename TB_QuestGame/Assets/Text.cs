@@ -19,18 +19,16 @@ namespace TB_QuestGame
         public static string MissionIntro()
         {
             string messageBoxText =
-            "You have been hired by the Norlon Corporation to participate " +
-            "in its latest endeavor, the Aion Project. Your mission is to " +
-            "test the limits of the new Aion Engine and report back to " +
-            "the Norlon Corporation.\n" +
+            "You have fallen down, almost broke your head open. You feel a tad quesy from the fall.\n" +
+			"You remember walking up the Temple of the Moon and staring down this dark pit. \n" +
+			"You also remember your feign curiosity welling up inside you. Now look what you did. It is time\n" +
+			"to escape and find help (because you're bleeding severly. Good luck with that).\n" +
             " \n" +
             "Press the Esc key to exit the game at any point.\n" +
             " \n" +
-            "Your mission begins now.\n" +
+            "Your journey begins now.\n" +
             " \n" +
-            "\tYour first task will be to set up the initial parameters of your mission.\n" +
-            " \n" +
-            "\tPress any key to begin the Mission Initialization Process.\n";
+            "\tPress any key to begin remembering.\n";
 
             return messageBoxText;
         }
@@ -38,10 +36,9 @@ namespace TB_QuestGame
         public static string CurrrentLocationInfo()
         {
             string messageBoxText =
-            "You are now in the Norlon Corporation research facility located in " +
-            "the city of Heraklion on the north coast of Crete. You have passed through " +
-            "heavy security and descended an unknown number of levels to the top secret " +
-            "research lab for the Aion Project.\n" +
+            "Right now, you are in what you think is the Temple of the Moon but you have no idea.\n" +
+			"In front of you, you see a sandstone door that seems to be opened by some sort of mechanism.\n" + 
+			"\n" +
             " \n" +
             "\tChoose from the menu options to proceed.\n";
 
@@ -53,7 +50,7 @@ namespace TB_QuestGame
         public static string InitializeMissionIntro()
         {
             string messageBoxText =
-                "Before you begin your mission we much gather your base data.\n" +
+                "Before you begin, can you remember your name? You figured while you do that, you could supress the bleeding.\n" +
                 " \n" +
                 "You will be prompted for the required information. Please enter the information below.\n" +
                 " \n" +
@@ -65,9 +62,9 @@ namespace TB_QuestGame
         public static string InitializeMissionGetTravelerName()
         {
             string messageBoxText =
-                "Enter your name traveler.\n" +
+                "Can you remember your name, dungeon master?\n" +
                 " \n" +
-                "Please use the name you wish to be referred during your mission.";
+                "Please use the name you wish to be referred during your journey.";
 
             return messageBoxText;
         }
@@ -75,11 +72,11 @@ namespace TB_QuestGame
         public static string InitializeMissionGetTravelerAge(Traveler gameTraveler)
         {
             string messageBoxText =
-                $"Very good then, we will call you {gameTraveler.Name} on this mission.\n" +
+				$"Alright, you remember your name, {gameTraveler.Name}. Can you remember your age?.\n" +
                 " \n" +
                 "Enter your age below.\n" +
                 " \n" +
-                "Please use the standard Earth year as your reference.";
+                "";
 
             return messageBoxText;
         }
@@ -87,18 +84,18 @@ namespace TB_QuestGame
         public static string InitializeMissionGetTravelerRace(Traveler gameTraveler)
         {
             string messageBoxText =
-                $"{gameTraveler.Name}, it will be important for us to know your race on this mission.\n" +
+                $"{gameTraveler.Name}, what's in your backpack? \n" +
                 " \n" +
-                "Enter your race below.\n" +
+                "Enter your starting item below.\n" +
                 " \n" +
-                "Please use the universal race classifications below." +
+                "Please use the starting items below." +
                 " \n";
 
             string raceList = null;
 
-            foreach (Character.RaceType race in Enum.GetValues(typeof(Character.RaceType)))
+			foreach (Character.StartingItem race in Enum.GetValues(typeof(Character.StartingItem)))
             {
-                if (race != Character.RaceType.None)
+				if (race != Character.StartingItem.None)
                 {
                     raceList += $"\t{race}\n";
                 }
@@ -112,16 +109,14 @@ namespace TB_QuestGame
         public static string InitializeMissionEchoTravelerInfo(Traveler gameTraveler)
         {
             string messageBoxText =
-                $"Very good then {gameTraveler.Name}.\n" +
+                $"Awesome, {gameTraveler.Name}!\n" +
                 " \n" +
-                "It appears we have all the necessary data to begin your mission. You will find it" +
-                " listed below.\n" +
+                "You have remembered your name and your age! " +
                 " \n" +
-                $"\tTraveler Name: {gameTraveler.Name}\n" +
-                $"\tTraveler Age: {gameTraveler.Age}\n" +
-                $"\tTraveler Race: {gameTraveler.Race}\n" +
+                $"\tYour name: {gameTraveler.Name}\n" +
+                $"\tYour age: {gameTraveler.Age}\n" +
                 " \n" +
-                "Press any key to begin your mission.";
+                "Press any key to begin your mastering of the dugeon.";
 
             return messageBoxText;
         }
@@ -135,37 +130,36 @@ namespace TB_QuestGame
         public static string TravelerInfo(Traveler gameTraveler)
         {
             string messageBoxText =
-                $"\tTraveler Name: {gameTraveler.Name}\n" +
-                $"\tTraveler Age: {gameTraveler.Age}\n" +
-                $"\tTraveler Race: {gameTraveler.Race}\n" +
+                $"\tYour name: {gameTraveler.Name}\n" +
+                $"\tYour age: {gameTraveler.Age}\n" +
                 " \n";
 
             return messageBoxText;
         }
 
-        //public static string Travel(int currentSpaceTimeLocationId, List<SpaceTimeLocation> spaceTimeLocations)
-        //{
-        //    string messageBoxText =
-        //        $"{gameTraveler.Name}, Aion Base will need to know the name of the new location.\n" +
-        //        " \n" +
-        //        "Enter the ID number of your desired location from the table below.\n" +
-        //        " \n";
-
-
-        //    string spaceTimeLocationList = null;
-
-        //    foreach (SpaceTimeLocation spaceTimeLocation in spaceTimeLocations)
-        //    {
-        //        if (race != Character.RaceType.None)
-        //        {
-        //            raceList += $"\t{race}\n";
-        //        }
-        //    }
-
-        //    messageBoxText += raceList;
-
-        //    return messageBoxText;
-        //}
+//        public static string Travel(int currentLocationId, List<SpaceTimeLocation> spaceTimeLocations)
+//        {
+//            string messageBoxText =
+//                $"{gameTraveler.Name}, enter the new location.\n" +
+//                " \n" +
+//                "Enter the ID number of your desired location from the table below.\n" +
+//                " \n";
+//
+//
+//            string spaceTimeLocationList = null;
+//
+//            foreach (SpaceTimeLocation spaceTimeLocation in spaceTimeLocations)
+//            {
+//                if (race != Character.RaceType.None)
+//                {
+//                    raceList += $"\t{race}\n";
+//                }
+//            }
+//
+//            messageBoxText += raceList;
+//
+//            return messageBoxText;
+//        }
 
         #endregion
     }

@@ -138,12 +138,12 @@ namespace TB_QuestGame
         /// get a character race value from the user
         /// </summary>
         /// <returns>character race value</returns>
-        public Character.RaceType GetRace()
+        public Character.StartingItem GetStartingItem()
         {
-            Character.RaceType raceType;
-            Enum.TryParse<Character.RaceType>(Console.ReadLine(), out raceType);
+			Character.StartingItem startingItemType;
+			Enum.TryParse<Character.StartingItem>(Console.ReadLine(), out startingItemType);
 
-            return raceType;
+            return startingItemType;
         }
 
         /// <summary>
@@ -163,14 +163,14 @@ namespace TB_QuestGame
 
             Console.SetCursorPosition(0, 10);
             string tabSpace = new String(' ', 35);
-            Console.WriteLine(tabSpace + @" _____ _              ___  _               ______          _           _   ");
-            Console.WriteLine(tabSpace + @"|_   _| |            / _ \(_)              | ___ \        (_)         | |  ");
-            Console.WriteLine(tabSpace + @"  | | | |__   ___   / /_\ \_  ___  _ __    | |_/ _ __ ___  _  ___  ___| |_ ");
-            Console.WriteLine(tabSpace + @"  | | | '_ \ / _ \  |  _  | |/ _ \| '_ \   |  __| '__/ _ \| |/ _ \/ __| __|");
-            Console.WriteLine(tabSpace + @"  | | | | | |  __/  | | | | | (_) | | | |  | |  | | | (_) | |  __| (__| |_ ");
-            Console.WriteLine(tabSpace + @"  \_/ |_| |_|\___|  \_| |_|_|\___/|_| |_|  \_|  |_|  \___/| |\___|\___|\__|");
-            Console.WriteLine(tabSpace + @"                                                         _/ |              ");
-            Console.WriteLine(tabSpace + @"                                                        |__/             ");
+            Console.WriteLine(tabSpace + @"Dungeon Master");
+            Console.WriteLine(tabSpace + @"");
+            Console.WriteLine(tabSpace + @"Created and written by Wyatt J. Miller");
+            Console.WriteLine(tabSpace + @"");
+            Console.WriteLine(tabSpace + @"For NMC CIT 195");
+            Console.WriteLine(tabSpace + @"");
+            Console.WriteLine(tabSpace + @"");
+            Console.WriteLine(tabSpace + @"");
 
             Console.SetCursorPosition(80, 25);
             Console.Write("Press any key to continue or Esc to exit.");
@@ -194,7 +194,7 @@ namespace TB_QuestGame
             ConsoleWindowControl.DisableResize();
             ConsoleWindowControl.DisableMaximize();
             ConsoleWindowControl.DisableMinimize();
-            Console.Title = "The Aion Project";
+            Console.Title = "Dungeon Master";
 
             //
             // set the default console window values
@@ -361,36 +361,29 @@ namespace TB_QuestGame
             //
             // intro
             //
-            DisplayGamePlayScreen("Mission Initialization", Text.InitializeMissionIntro(), ActionMenu.MissionIntro, "");
+            DisplayGamePlayScreen("Journey Initialization", Text.InitializeMissionIntro(), ActionMenu.MissionIntro, "");
             GetContinueKey();
 
             //
             // get traveler's name
             //
-            DisplayGamePlayScreen("Mission Initialization - Name", Text.InitializeMissionGetTravelerName(), ActionMenu.MissionIntro, "");
+            DisplayGamePlayScreen("Journey Initialization - Name", Text.InitializeMissionGetTravelerName(), ActionMenu.MissionIntro, "");
             DisplayInputBoxPrompt("Enter your name: ");
             traveler.Name = GetString();
 
             //
             // get traveler's age
             //
-            DisplayGamePlayScreen("Mission Initialization - Age", Text.InitializeMissionGetTravelerAge(traveler), ActionMenu.MissionIntro, "");
+            DisplayGamePlayScreen("Journey Initialization - Age", Text.InitializeMissionGetTravelerAge(traveler), ActionMenu.MissionIntro, "");
             int gameTravelerAge;
 
             GetInteger($"Enter your age {traveler.Name}: ", 0, 1000000, out gameTravelerAge);
             traveler.Age = gameTravelerAge;
 
             //
-            // get traveler's race
-            //
-            DisplayGamePlayScreen("Mission Initialization - Race", Text.InitializeMissionGetTravelerRace(traveler), ActionMenu.MissionIntro, "");
-            DisplayInputBoxPrompt($"Enter your race {traveler.Name}: ");
-            traveler.Race = GetRace();
-
-            //
             // echo the traveler's info
             //
-            DisplayGamePlayScreen("Mission Initialization - Complete", Text.InitializeMissionEchoTravelerInfo(traveler), ActionMenu.MissionIntro, "");
+            DisplayGamePlayScreen("Journey Initialization - Complete", Text.InitializeMissionEchoTravelerInfo(traveler), ActionMenu.MissionIntro, "");
             GetContinueKey();
 
             return traveler;

@@ -78,7 +78,7 @@ namespace TB_QuestGame
             //
             // display introductory message
             //
-            _gameConsoleView.DisplayGamePlayScreen("Mission Intro", Text.MissionIntro(), ActionMenu.MissionIntro, "");
+            _gameConsoleView.DisplayGamePlayScreen("Dungeon Master Intro", Text.MissionIntro(), ActionMenu.MissionIntro, "");
             _gameConsoleView.GetContinueKey();
 
             //
@@ -134,7 +134,7 @@ namespace TB_QuestGame
 
             _gameTraveler.Name = traveler.Name;
             _gameTraveler.Age = traveler.Age;
-            _gameTraveler.Race = traveler.Race;
+			_gameTraveler.startingItem = traveler.startingItem;
         }
 
         #endregion

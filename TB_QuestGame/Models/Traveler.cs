@@ -33,7 +33,7 @@ namespace TB_QuestGame
 
         }
 
-        public Traveler(string name, RaceType race) : base(name, race)
+        public Traveler(string name, StartingItem race) : base(name, race)
         {
 
         }
