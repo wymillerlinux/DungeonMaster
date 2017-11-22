@@ -12,8 +12,8 @@ namespace TB_QuestGame
     /// </summary>
     public static class Text
     {
-        public static List<string> HeaderText = new List<string>() { "The Aion Project" };
-        public static List<string> FooterText = new List<string>() { "Laughing Leaf Productions, Entourage Software, 2016-2017" };
+        public static List<string> HeaderText = new List<string>() { "Dungeon Master" };
+        public static List<string> FooterText = new List<string>() { "Entourage Software, 2017" };
 
         #region INTITIAL GAME SETUP
 
@@ -379,7 +379,7 @@ namespace TB_QuestGame
 
         public static string CurrentInventory(IEnumerable<TravelerObject> inventory)
         {
-            string messageBoxText = "Game Objects\n\n" + "ID".PadRight(10) + "Name".PadRight(30) + "\n" + "-- - ".PadRight(10) + "-------------- - ".PadRight(30) + "\n";
+            string messageBoxText = "Game Objects\n\n" + "ID".PadRight(10) + "Name".PadRight(30) + "\n" + "---".PadRight(10) + "-------------- - ".PadRight(30) + "\n";
 
 
             return messageBoxText;
@@ -387,16 +387,24 @@ namespace TB_QuestGame
 
         public static string GameObjectChooseList(IEnumerable<GameObject> gameObjects)
         {
-            string messageBoxText = "Game Objects\n\n" + "ID".PadRight(10) + "Name".PadRight(30) + "\n" + "---".PadRight(10) + "---------------".PadRight(30) + "\n";
+            string messageBoxText = "Game Objects" +
+                "\n" + 
+                "ID".PadRight(10) + 
+                "Name".PadRight(30) + "\n" + 
+                "---".PadRight(10) + 
+                "---------------".PadRight(30) + "\n";
 
             string gameObjectRows = null;
-
             foreach (GameObject gameObject in gameObjects)
             {
                 gameObjectRows +=
                     $"{gameObject.Id}".PadRight(10) +
-                    $"{gameObject.Name}".PadLeft(30) + Environment.NewLine;
+                    $"{gameObject.Name}".PadLeft(30) + 
+                    Environment.NewLine;
             }
+
+            messageBoxText += gameObjectRows;
+
             return messageBoxText;
         }
 

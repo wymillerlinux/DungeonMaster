@@ -15,7 +15,7 @@ namespace TB_QuestGame
             {
                 Id = 1,
                 Name = "Loose Sandstone",
-                SpaceTimeLocationId = 2,
+                SpaceTimeLocationId = 1,
                 Description = "A small loose sandstone just lying about. How perculiar.",
                 Type = TravelerObjectType.Progress,
                 Value = 0,
@@ -28,7 +28,7 @@ namespace TB_QuestGame
             {
                 Id = 2,
                 Name = "Stone Turtle",
-                SpaceTimeLocationId = 3,
+                SpaceTimeLocationId = 2,
                 Description = "A small stone turtle is looking at you. Both you and the turtle are playing the staring game!",
                 Type = TravelerObjectType.Progress,
                 Value = 0,
@@ -41,7 +41,7 @@ namespace TB_QuestGame
             {
                 Id = 3,
                 Name = "Map",
-                SpaceTimeLocationId = 4,
+                SpaceTimeLocationId = 1,
                 Description = "By golly, it's a map! Must've been left when a previous traveler came by here.",
                 Type = TravelerObjectType.Information,
                 Value = 10,

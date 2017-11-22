@@ -68,13 +68,13 @@ namespace TB_QuestGame
                               "Norlon, founded in 1985 as a bio-tech company, is now a 36 billion dollar company " +
                               "with huge holdings in defense and space research and development.",
                 GeneralContents = "- stuff in the room -",
-                Accessible = true,
+                Accessible = false,
                 ExperiencePoints = 10
             },
             
             new SpaceTimeLocation
             {
-                CommonName = "IT'S A SECRET! (or Secret Room 1)",
+                CommonName = "SECRET! (or Secret Room 1)",
                 SpaceTimeLocationID = 5,
                 UniversalDate = 386759,
                 UniversalLocation = "P-?, SS-???, G-????, LS-????",
