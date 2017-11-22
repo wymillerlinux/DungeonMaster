@@ -13,22 +13,22 @@ namespace TB_QuestGame
     {
         #region ENUMERABLES
 
-        public enum StartingItem
+        public enum RaceType
         {
             None,
-            HealthPack,
-			Towel,
-			Potato,
-			BrokenPhone
+            Human,
+            Thorian,
+            Xantorian
         }
 
         #endregion
 
         #region FIELDS
 
-        private string _name;
-        private int _age;
-		private StartingItem _startingItem;
+        protected string _name;
+        protected int _spaceTimeLocationID;
+        protected int _age;
+        protected RaceType _race;
 
         #endregion
 
@@ -40,16 +40,22 @@ namespace TB_QuestGame
             set { _name = value; }
         }
 
+        public int SpaceTimeLocationID
+        {
+            get { return _spaceTimeLocationID; }
+            set { _spaceTimeLocationID = value; }
+        }
+
         public int Age
         {
             get { return _age; }
             set { _age = value; }
         }
 
-		public StartingItem startingItem
+        public RaceType Race
         {
-            get { return _startingItem; }
-            set { _startingItem = value; }
+            get { return _race; }
+            set { _race = value; }
         }
 
         #endregion
@@ -61,10 +67,11 @@ namespace TB_QuestGame
 
         }
 
-		public Character(string name, StartingItem race)
+        public Character(string name, RaceType race, int spaceTimeLocationID)
         {
             _name = name;
-			_startingItem = startingItem;
+            _race = race;
+            _spaceTimeLocationID = spaceTimeLocationID;
         }
 
         #endregion

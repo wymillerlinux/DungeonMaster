@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,12 +12,25 @@ namespace TB_QuestGame
     /// </summary>
     public class ConsoleView
     {
+        #region ENUMS
+
+        private enum ViewStatus
+        {
+            TravelerInitialization,
+            PlayingGame
+        }
+
+        #endregion
+
         #region FIELDS
 
         //
         // declare game objects for the ConsoleView object to use
         //
         Traveler _gameTraveler;
+        Universe _gameUniverse;
+
+        ViewStatus _viewStatus;
 
         #endregion
 
@@ -29,9 +43,12 @@ namespace TB_QuestGame
         /// <summary>
         /// default constructor to create the console view objects
         /// </summary>
-        public ConsoleView(Traveler gameTraveler)
+        public ConsoleView(Traveler gameTraveler, Universe gameUniverse)
         {
             _gameTraveler = gameTraveler;
+            _gameUniverse = gameUniverse;
+
+            _viewStatus = ViewStatus.TravelerInitialization;
 
             InitializeDisplay();
         }
@@ -61,6 +78,7 @@ namespace TB_QuestGame
             DisplayMessageBox(messageBoxHeaderText, messageBoxText);
             DisplayMenuBox(menu);
             DisplayInputBox();
+            DisplayStatusBox();
         }
 
         /// <summary>
@@ -78,13 +96,25 @@ namespace TB_QuestGame
         public TravelerAction GetActionMenuChoice(Menu menu)
         {
             TravelerAction choosenAction = TravelerAction.None;
+            Console.CursorVisible = false;
 
             //
-            // TODO validate menu choices
+            // create an array of valid keys from menu dictionary
             //
-            ConsoleKeyInfo keyPressedInfo = Console.ReadKey();
-            char keyPressed = keyPressedInfo.KeyChar;
+            char[] validKeys = menu.MenuChoices.Keys.ToArray();
+
+            //
+            // validate key pressed as in MenuChoices dictionary
+            //
+            char keyPressed;
+            do
+            {
+                ConsoleKeyInfo keyPressedInfo = Console.ReadKey(true);
+                keyPressed = keyPressedInfo.KeyChar;
+            } while (!validKeys.Contains(keyPressed));
+
             choosenAction = menu.MenuChoices[keyPressed];
+            Console.CursorVisible = true;
 
             return choosenAction;
         }
@@ -102,9 +132,10 @@ namespace TB_QuestGame
         /// get an integer value from the user
         /// </summary>
         /// <returns>integer value</returns>
-        public bool GetInteger(string prompt, int minimumValue, int maximumValue, out int integerChoice)
+        private bool GetInteger(string prompt, int minimumValue, int maximumValue, out int integerChoice)
         {
             bool validResponse = false;
+            bool validateRange = (minimumValue != 0 || maximumValue != 0);
             integerChoice = 0;
 
             DisplayInputBoxPrompt(prompt);
@@ -112,21 +143,66 @@ namespace TB_QuestGame
             {
                 if (int.TryParse(Console.ReadLine(), out integerChoice))
                 {
-                    if (integerChoice >= minimumValue && integerChoice <= maximumValue)
+                    if (validateRange)
                     {
-                        validResponse = true;
+                        if (integerChoice >= minimumValue && integerChoice <= maximumValue)
+                        {
+                            validResponse = true;
+                        }
+                        else
+                        {
+                            ClearInputBox();
+                            DisplayInputErrorMessage($"You must enter an integer value between {minimumValue} and {maximumValue}. Please try again.");
+                            DisplayInputBoxPrompt(prompt);
+                        }
                     }
                     else
                     {
-                        ClearInputBox();
-                        DisplayInputErrorMessage($"You must enter an integer value between {minimumValue} and {maximumValue}. Please try again.");
-                        DisplayInputBoxPrompt(prompt);
+                        validResponse = true;
                     }
                 }
                 else
                 {
                     ClearInputBox();
                     DisplayInputErrorMessage($"You must enter an integer value between {minimumValue} and {maximumValue}. Please try again.");
+                    DisplayInputBoxPrompt(prompt);
+                }
+            }
+
+            Console.CursorVisible = false;
+
+            return true;
+        }
+
+        /// <summary>
+        /// get an integer value from the user
+        /// </summary>
+        /// <returns>integer value</returns>
+        public bool GetDouble(string prompt, double minimumValue, double maximumValue, out double doubleChoice)
+        {
+            bool validResponse = false;
+            doubleChoice = 0;
+
+            DisplayInputBoxPrompt(prompt);
+            while (!validResponse)
+            {
+                if (double.TryParse(Console.ReadLine(), out doubleChoice))
+                {
+                    if (doubleChoice >= minimumValue && doubleChoice <= maximumValue)
+                    {
+                        validResponse = true;
+                    }
+                    else
+                    {
+                        ClearInputBox();
+                        DisplayInputErrorMessage($"You must enter an number value between {minimumValue} and {maximumValue}. Please try again.");
+                        DisplayInputBoxPrompt(prompt);
+                    }
+                }
+                else
+                {
+                    ClearInputBox();
+                    DisplayInputErrorMessage($"You must enter an number value between {minimumValue} and {maximumValue}. Please try again.");
                     DisplayInputBoxPrompt(prompt);
                 }
             }
@@ -138,12 +214,12 @@ namespace TB_QuestGame
         /// get a character race value from the user
         /// </summary>
         /// <returns>character race value</returns>
-        public Character.StartingItem GetStartingItem()
+        public Character.RaceType GetRace()
         {
-			Character.StartingItem startingItemType;
-			Enum.TryParse<Character.StartingItem>(Console.ReadLine(), out startingItemType);
+            Character.RaceType raceType;
+            Enum.TryParse<Character.RaceType>(Console.ReadLine(), out raceType);
 
-            return startingItemType;
+            return raceType;
         }
 
         /// <summary>
@@ -163,15 +239,7 @@ namespace TB_QuestGame
 
             Console.SetCursorPosition(0, 10);
             string tabSpace = new String(' ', 35);
-            Console.WriteLine(tabSpace + @"Dungeon Master");
-            Console.WriteLine(tabSpace + @"");
-            Console.WriteLine(tabSpace + @"Created and written by Wyatt J. Miller");
-            Console.WriteLine(tabSpace + @"");
-            Console.WriteLine(tabSpace + @"For NMC CIT 195");
-            Console.WriteLine(tabSpace + @"");
-            Console.WriteLine(tabSpace + @"");
-            Console.WriteLine(tabSpace + @"");
-
+            Console.WriteLine(tabSpace + @"DUNGEON MASTER");
             Console.SetCursorPosition(80, 25);
             Console.Write("Press any key to continue or Esc to exit.");
             keyPressed = Console.ReadKey();
@@ -295,6 +363,64 @@ namespace TB_QuestGame
         }
 
         /// <summary>
+        /// draw the status box on the game screen
+        /// </summary>
+        public void DisplayStatusBox()
+        {
+            Console.BackgroundColor = ConsoleTheme.InputBoxBackgroundColor;
+            Console.ForegroundColor = ConsoleTheme.InputBoxBorderColor;
+
+            //
+            // display the outline for the status box
+            //
+            ConsoleWindowHelper.DisplayBoxOutline(
+                ConsoleLayout.StatusBoxPositionTop,
+                ConsoleLayout.StatusBoxPositionLeft,
+                ConsoleLayout.StatusBoxWidth,
+                ConsoleLayout.StatusBoxHeight);
+
+            //
+            // display the text for the status box if playing game
+            //
+            if (_viewStatus == ViewStatus.PlayingGame)
+            {
+                //
+                // display status box header with title
+                //
+                Console.BackgroundColor = ConsoleTheme.StatusBoxBorderColor;
+                Console.ForegroundColor = ConsoleTheme.StatusBoxForegroundColor;
+                Console.SetCursorPosition(ConsoleLayout.StatusBoxPositionLeft + 2, ConsoleLayout.StatusBoxPositionTop + 1);
+                Console.Write(ConsoleWindowHelper.Center("Game Stats", ConsoleLayout.StatusBoxWidth - 4));
+                Console.BackgroundColor = ConsoleTheme.StatusBoxBackgroundColor;
+                Console.ForegroundColor = ConsoleTheme.StatusBoxForegroundColor;
+
+                //
+                // display stats
+                //
+                int startingRow = ConsoleLayout.StatusBoxPositionTop + 3;
+                int row = startingRow;
+                foreach (string statusTextLine in Text.StatusBox(_gameTraveler, _gameUniverse))
+                {
+                    Console.SetCursorPosition(ConsoleLayout.StatusBoxPositionLeft + 3, row);
+                    Console.Write(statusTextLine);
+                    row++;
+                }
+            }
+            else
+            {
+                //
+                // display status box header without header
+                //
+                Console.BackgroundColor = ConsoleTheme.StatusBoxBorderColor;
+                Console.ForegroundColor = ConsoleTheme.StatusBoxForegroundColor;
+                Console.SetCursorPosition(ConsoleLayout.StatusBoxPositionLeft + 2, ConsoleLayout.StatusBoxPositionTop + 1);
+                Console.Write(ConsoleWindowHelper.Center("", ConsoleLayout.StatusBoxWidth - 4));
+                Console.BackgroundColor = ConsoleTheme.StatusBoxBackgroundColor;
+                Console.ForegroundColor = ConsoleTheme.StatusBoxForegroundColor;
+            }
+        }
+
+        /// <summary>
         /// draw the input box on the game screen
         /// </summary>
         public void DisplayInputBox()
@@ -302,7 +428,7 @@ namespace TB_QuestGame
             Console.BackgroundColor = ConsoleTheme.InputBoxBackgroundColor;
             Console.ForegroundColor = ConsoleTheme.InputBoxBorderColor;
 
-            ConsoleWindowHelper.DisplayBoxOutline(
+            ConsoleWindowHelper.DisplayBoxOutline(    
                 ConsoleLayout.InputBoxPositionTop,
                 ConsoleLayout.InputBoxPositionLeft,
                 ConsoleLayout.InputBoxWidth,
@@ -361,30 +487,49 @@ namespace TB_QuestGame
             //
             // intro
             //
-            DisplayGamePlayScreen("Journey Initialization", Text.InitializeMissionIntro(), ActionMenu.MissionIntro, "");
+            DisplayGamePlayScreen("Initialization", Text.InitializeMissionIntro(), ActionMenu.MissionIntro, "");
             GetContinueKey();
 
             //
             // get traveler's name
             //
-            DisplayGamePlayScreen("Journey Initialization - Name", Text.InitializeMissionGetTravelerName(), ActionMenu.MissionIntro, "");
+            DisplayGamePlayScreen("Initialization - Name", Text.InitializeMissionGetTravelerName(), ActionMenu.MissionIntro, "");
             DisplayInputBoxPrompt("Enter your name: ");
             traveler.Name = GetString();
 
             //
             // get traveler's age
             //
-            DisplayGamePlayScreen("Journey Initialization - Age", Text.InitializeMissionGetTravelerAge(traveler), ActionMenu.MissionIntro, "");
-            int gameTravelerAge;
+            //DisplayGamePlayScreen("Mission Initialization - Age", Text.InitializeMissionGetTravelerAge(traveler.Name), ActionMenu.MissionIntro, "");
+            //int gameTravelerAge;
 
-            GetInteger($"Enter your age {traveler.Name}: ", 0, 1000000, out gameTravelerAge);
-            traveler.Age = gameTravelerAge;
+            //GetInteger($"Enter your age {traveler.Name}: ", 0, 1000000, out gameTravelerAge);
+            //traveler.Age = gameTravelerAge;
+
+            //
+            // get traveler's race
+            //
+            //DisplayGamePlayScreen("Mission Initialization - Race", Text.InitializeMissionGetTravelerRace(traveler), ActionMenu.MissionIntro, "");
+            //DisplayInputBoxPrompt($"Enter your race {traveler.Name}: ");
+            //traveler.Race = GetRace();
+
+            //
+            // get traveler's home planet
+            //
+            //DisplayGamePlayScreen("Mission Initialization - Home Planet", Text.InitializeMissionGetTravelerHomePlanet(traveler), ActionMenu.MissionIntro, "");
+            //DisplayInputBoxPrompt("Enter your home planet: ");
+            //traveler.HomePlanet = GetString();
 
             //
             // echo the traveler's info
             //
-            DisplayGamePlayScreen("Journey Initialization - Complete", Text.InitializeMissionEchoTravelerInfo(traveler), ActionMenu.MissionIntro, "");
+            DisplayGamePlayScreen("Mission Initialization - Complete", Text.InitializeMissionEchoTravelerInfo(traveler), ActionMenu.MissionIntro, "");
             GetContinueKey();
+
+            // 
+            // change view status to playing game
+            //
+            _viewStatus = ViewStatus.PlayingGame;
 
             return traveler;
         }
@@ -393,11 +538,231 @@ namespace TB_QuestGame
 
         public void DisplayTravelerInfo()
         {
-            DisplayGamePlayScreen("Traveler Information", Text.TravelerInfo(_gameTraveler), ActionMenu.MainMenu, "");
+            SpaceTimeLocation currentSpaceTimeLocation = _gameUniverse.GetSpaceTimeLocationById(_gameTraveler.SpaceTimeLocationID);
+            DisplayGamePlayScreen("Traveler Information", Text.TravelerInfo(_gameTraveler, currentSpaceTimeLocation), ActionMenu.MainMenu, "");
+        }
+
+        public void DisplayCurrentLocationInfo()
+        {
+            SpaceTimeLocation currentSpaceTimeLocation = _gameUniverse.GetSpaceTimeLocationById(_gameTraveler.SpaceTimeLocationID);
+            DisplayGamePlayScreen("Current Location", Text.CurrentLocationInfo(currentSpaceTimeLocation), ActionMenu.MainMenu, "");
+        }
+
+        public void DisplayLookAround()
+        {
+            SpaceTimeLocation currentSpaceTimeLocation = _gameUniverse.GetSpaceTimeLocationById(_gameTraveler.SpaceTimeLocationID);
+            List<GameObject> gameObjectsInCurrentSpaceTimeLocation =
+                _gameUniverse.GetGameObjectsBySpaceTimeLocationId(_gameTraveler.SpaceTimeLocationID);
+            string messageBoxText = Text.LookAround(currentSpaceTimeLocation) + Environment.NewLine + Environment.NewLine;
+            messageBoxText += Text.GameObjectsChooseList(gameObjectsInCurrentSpaceTimeLocation);
+            DisplayGamePlayScreen("Current Location", Text.LookAround(currentSpaceTimeLocation), ActionMenu.MainMenu, "");
+        }
+
+        public int DisplayGetNextSpaceTimeLocation()
+        {
+            int spaceTimeLocationId = 0;
+            bool validSpaceTimeLocationId = false;
+
+            DisplayGamePlayScreen("Travel to a New Location", Text.Travel(_gameTraveler, _gameUniverse.SpaceTimeLocations), ActionMenu.MainMenu, "");
+
+            while (!validSpaceTimeLocationId)
+            {
+                //
+                // get an integer from the player
+                //
+                GetInteger($"Enter your new location {_gameTraveler.Name}: ", 1, _gameUniverse.GetMaxSpaceTimeLocationId(), out spaceTimeLocationId);
+
+                //
+                // validate integer as a valid space-time location id and determine accessibility
+                //
+                if (_gameUniverse.IsValidSpaceTimeLocationId(spaceTimeLocationId))
+                {
+                    if (_gameUniverse.IsAccessibleLocation(spaceTimeLocationId))
+                    {
+                        validSpaceTimeLocationId = true;
+                    }
+                    else
+                    {
+                        ClearInputBox();
+                        DisplayInputErrorMessage("It appears you attempting to travel to an inaccessible location. Please try again.");
+                    }
+                }
+                else
+                {
+                    DisplayInputErrorMessage("It appears you entered an invalid Space-Time location id. Please try again.");
+                }
+            }
+
+            return spaceTimeLocationId;
+        }
+
+        public void DisplayLocationsVisited()
+        {
+            //
+            // generate a list of space time locations that have been visited
+            //
+            List<SpaceTimeLocation> visitedSpaceTimeLocations = new List<SpaceTimeLocation>();
+            foreach (int spaceTimeLocationId in _gameTraveler.SpaceTimeLocationsVisited)
+            {
+                visitedSpaceTimeLocations.Add(_gameUniverse.GetSpaceTimeLocationById(spaceTimeLocationId));
+            }
+
+            DisplayGamePlayScreen("Locations Visited", Text.VisitedLocations(visitedSpaceTimeLocations), ActionMenu.MainMenu, "");
+        }
+
+        public void DisplayListOfSpaceTimeLocations()
+        {
+            DisplayGamePlayScreen("List: Locations", Text.ListAllSpaceTimeLocations(_gameUniverse.SpaceTimeLocations), ActionMenu.AdminMenu, "");
         }
 
         #endregion
 
+        public void DisplayGameOver()
+        {
+            
+        }
+
+        #endregion
+
+        #region SPRINT THREE METHODS
+
+        public void DisplayListOfAllGameObject()
+        {
+            DisplayGamePlayScreen("List: Game Objects", Text.ListAllGameobjects(_gameUniverse.GameObjects), ActionMenu.AdminMenu, "");
+        }
+
+        public int DisplayGetObjectsToLookAt()
+        {
+            int gameObjectId = 0;
+            bool vaildGamerObjectId = false;
+
+            List<GameObject> gameObjectsInSpaceTimeLocation =
+                _gameUniverse.GetGameObjectsBySpaceTimeLocationId(_gameTraveler.SpaceTimeLocationID);
+
+            if (gameObjectsInSpaceTimeLocation.Count > 0)
+            {
+                DisplayGamePlayScreen("Look at a Object", Text.GameObjectsChooseList(gameObjectsInSpaceTimeLocation), ActionMenu.MainMenu, "");
+
+                while (!vaildGamerObjectId)
+                {
+                    GetInteger($"Enter the ID number of the game object you wish to look at: ", 0, 0, out gameObjectId);
+
+                    if (_gameUniverse.IsValidGameObjectByLocationId(gameObjectId, _gameTraveler.SpaceTimeLocationID))
+                    {
+                        vaildGamerObjectId = true;
+                    }
+                    else
+                    {
+                        ClearInputBox();
+                        DisplayInputErrorMessage("It appears you entered an invalid ID, please try again.");
+                    }
+                }
+            }
+            else
+            {
+                DisplayGamePlayScreen("Look at a Object", "It appears there are no objects here...", ActionMenu.MainMenu, "");
+            }
+           
+            return gameObjectId;
+        }
+
+        public void DisplayGameObjectInfo(GameObject gameObject)
+        {
+            DisplayGamePlayScreen("Current Location", Text.LookAt(gameObject), ActionMenu.MainMenu, "");
+        }
+
+        public void DisplayInventory()
+        {
+            DisplayGamePlayScreen("Current Inventory", Text.CurrentInventory(_gameTraveler.Inventory), ActionMenu.MainMenu, "");
+        }
+
+        public int DisplayGetTravelerObjectToPickUp()
+        {
+            int gameObjectId = 0;
+            bool validGameObjectId = false;
+
+            List<TravelerObject> travelerObjectsInSpaceTimeLocation = _gameUniverse.GetTravelerObjectBySpaceTimeLocationId(_gameTraveler.SpaceTimeLocationID);
+
+            if (travelerObjectsInSpaceTimeLocation.Count > 0)
+            {
+                DisplayGamePlayScreen("Pick up Game Object", Text.GameObjectChooseList(travelerObjectsInSpaceTimeLocation), ActionMenu.MainMenu, "");
+
+                while (!validGameObjectId)
+                {
+                    GetInteger($"Enter the ID number of the object you wish to add to your inventory: ", 0, 0 , out gameObjectId);
+
+                    if (_gameUniverse.IsVaildTravelerObjectByLocationId(gameObjectId, _gameTraveler.SpaceTimeLocationID))
+                    {
+                        TravelerObject travelerObject = _gameUniverse.GetGameObjectById(gameObjectId) as TravelerObject;
+                        if (travelerObject.CanInventory)
+                        {
+                            validGameObjectId = true;
+                        }
+                        else
+                        {
+                            ClearInputBox();
+                            DisplayInputErrorMessage("It appears you may not inventory that object. Please try again.");
+                        }
+                    }
+                    else
+                    {
+                        ClearInputBox();
+                        DisplayInputErrorMessage("It appears you entered an invalid game object id. Please try again.");
+                    }
+
+                }
+            }
+            else
+            {
+                DisplayGamePlayScreen("Pick Up Game Object", "It appears there are no game objects here.", ActionMenu.MainMenu, "");
+            }
+
+            return gameObjectId;
+        }
+
+        public int DisplayGetInventoryObjectToPutDown()
+        {
+            int travelerObjectId = 0;
+            bool validInventoryObjectId = false;
+
+            if (_gameTraveler.Inventory.Count > 0)
+            {
+                DisplayGamePlayScreen("Put Down Game Object", Text.GameObjectsChooseList(_gameTraveler.Inventory), ActionMenu.MainMenu, "");
+
+                while (!validInventoryObjectId)
+                {
+                    GetInteger($"Enter the Id number of the object you wish to remove from your inventory: ", 0, 0, out travelerObjectId);
+
+                    TravelerObject objectToPutDown = _gameTraveler.Inventory.FirstOrDefault(o => o.Id == travelerObjectId);
+
+                    if (objectToPutDown != null)
+                    {
+                        validInventoryObjectId = true;
+                    }
+                    else
+                    {
+                        ClearInputBox();
+                        DisplayInputErrorMessage("It appears you entered the Id of an object not in the inventory. Please try again.");
+                    }
+                }
+            }
+            else
+            {
+                DisplayGamePlayScreen("Pick Up Game Object", "It appears there are no objects currently in inventory.", ActionMenu.MainMenu, "");
+            }
+
+            return travelerObjectId;
+        }
+
+        public void DisplayConfirmTravelerObjectAddedToInventory(TravelerObject objectAddedToInventory)
+        {
+            DisplayGamePlayScreen("Pick Up Game Object", $"The {objectAddedToInventory.Name} has been added to your inventory.", ActionMenu.MainMenu, "");
+        }
+
+        public void DisplayConfirmTravelerObjectRemovedFromInventory(TravelerObject objectRemovedFromInventory)
+        {
+            DisplayGamePlayScreen("Put Down Game Object", $"The {objectRemovedFromInventory.Name} has been removed from your inventory.", ActionMenu.MainMenu, "");
+        }
         #endregion
     }
 }

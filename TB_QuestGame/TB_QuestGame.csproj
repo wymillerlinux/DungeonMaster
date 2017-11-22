@@ -50,15 +50,22 @@
   <ItemGroup>
     <Compile Include="Assets\ActionMenu.cs" />
     <Compile Include="Assets\Text.cs" />
+    <Compile Include="Assets\UniverseObjectsGameObjects.cs" />
+    <Compile Include="Assets\UniverseObjectsSpaceTimeLocations.cs" />
     <Compile Include="ConsoleUtilities\ConsoleLayout.cs" />
     <Compile Include="ConsoleUtilities\ConsoleTheme.cs" />
     <Compile Include="ConsoleUtilities\ConsoleWindowControl.cs" />
     <Compile Include="ConsoleUtilities\ConsoleWindowHelper.cs" />
     <Compile Include="Controllers\Controller.cs" />
     <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\Enum\TravelerObjectType.cs" />
+    <Compile Include="Models\GameObject.cs" />
     <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\SpaceTimeLocation.cs" />
     <Compile Include="Models\Traveler.cs" />
     <Compile Include="Models\TravelerAction.cs" />
+    <Compile Include="Models\TravelerObject.cs" />
+    <Compile Include="Models\Universe.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ConsoleView.cs" />

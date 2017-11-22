@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TheAionProject
+namespace TB_QuestGame
 {
     /// <summary>
     /// class for the game map locations
@@ -19,7 +19,7 @@ namespace TheAionProject
         private string _universalLocation;
         private string _description;
         private string _generalContents;
-        private bool _accessable;
+        private bool _accessible;
         private int _experiencePoints;
 
         #endregion
@@ -63,10 +63,10 @@ namespace TheAionProject
             set { _generalContents = value; }
         }
 
-        public bool Accessable
+        public bool Accessible
         {
-            get { return _accessable; }
-            set { _accessable = value; }
+            get { return _accessible; }
+            set { _accessible = value; }
         }
 
         public int ExperiencePoints
