@@ -25,13 +25,11 @@ namespace TB_QuestGame
             "You try to remember but the fact you're holding a whiskey bottle in your " +
             "hand is never a good sign.\n" +
             " \n" +
-            "Press the Esc key to exit the game at any point.\n" +
-            " \n" +
             "Your mission to escape begins now.\n" +
             " \n" +
             "\tYou try to remember your name.\n" +
             " \n" +
-            "\tPress any key to begin the Initialization Process.\n";
+            "\tPress any key to begin.\n";
 
             return messageBoxText;
         }
@@ -126,13 +124,7 @@ namespace TB_QuestGame
             string messageBoxText =
                 $"Very good then {gameTraveler.Name}.\n" +
                 " \n" +
-                "It appears we have all the necessary data to begin your mission. You will find it" +
-                " listed below.\n" +
-                " \n" +
                 $"\tTraveler Name: {gameTraveler.Name}\n" +
-                $"\tTraveler Age: {gameTraveler.Age}\n" +
-                $"\tTraveler Race: {gameTraveler.Race}\n" +
-                $"\tTraveler Home Planet: {gameTraveler.HomePlanet}" +
                 " \n\n" +
                 "Press any key to begin your mission.";
 
@@ -286,7 +278,7 @@ namespace TB_QuestGame
             string gameObjectRows = null;
             foreach (GameObject gameObject in gameObjects)
             {
-                gameObjectRows =
+                gameObjectRows +=
                     $"{gameObject.Id}".PadRight(10) +
                     $"{gameObject.Name}".PadRight(30) +
                     $"{gameObject.SpaceTimeLocationId}".PadRight(10) +
@@ -362,11 +354,11 @@ namespace TB_QuestGame
 
                 if (travelerObject.CanInventory)
                 {
-                    messageBoxText += "may be added to your inventory.";
+                    messageBoxText += " may be added to your inventory.";
                 }
                 else
                 {
-                    messageBoxText += "may not be added to your inventory";
+                    messageBoxText += " may not be added to your inventory";
                 }
             }
             else
@@ -379,7 +371,7 @@ namespace TB_QuestGame
 
         public static string CurrentInventory(IEnumerable<TravelerObject> inventory)
         {
-            string messageBoxText = "Game Objects\n\n" + "ID".PadRight(10) + "Name".PadRight(30) + "\n" + "---".PadRight(10) + "-------------- - ".PadRight(30) + "\n";
+            string messageBoxText = "Game Objects\n\n" + "ID".PadRight(10) + "Name".PadRight(30) + "\n" + "---".PadRight(10) + "---------------".PadRight(30) + "\n";
 
 
             return messageBoxText;
