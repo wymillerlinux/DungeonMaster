@@ -13,7 +13,7 @@ namespace TB_QuestGame
     public static class Text
     {
         public static List<string> HeaderText = new List<string>() { "Dungeon Master" };
-        public static List<string> FooterText = new List<string>() { "Entourage Software, 2017" };
+        public static List<string> FooterText = new List<string>() { "Entourage Software, Wyatt J. Miller, 2017" };
 
         #region INTITIAL GAME SETUP
 
@@ -320,7 +320,7 @@ namespace TB_QuestGame
                 "ID".PadRight(10) +
                 "Name".PadRight(30) + "\n" +
                 "---".PadRight(10) +
-                "-----------------".PadRight(30) + "";
+                "-----------------".PadRight(30) + "\n";
 
             string gameObjectRows = null;
             foreach (GameObject gameObject in gameObjects)
@@ -354,11 +354,11 @@ namespace TB_QuestGame
 
                 if (travelerObject.CanInventory)
                 {
-                    messageBoxText += " may be added to your inventory.";
+                    messageBoxText += " and may be added to your inventory.";
                 }
                 else
                 {
-                    messageBoxText += " may not be added to your inventory";
+                    messageBoxText += " and may not be added to your inventory";
                 }
             }
             else
@@ -371,8 +371,28 @@ namespace TB_QuestGame
 
         public static string CurrentInventory(IEnumerable<TravelerObject> inventory)
         {
-            string messageBoxText = "Game Objects\n\n" + "ID".PadRight(10) + "Name".PadRight(30) + "\n" + "---".PadRight(10) + "---------------".PadRight(30) + "\n";
+            string messageBoxText = "Game Objects" +
+                "\n" +
+                "ID".PadRight(10) +
+                "Name".PadRight(30) +
+                "Type".PadRight(10) + "\n" +
+                "---".PadRight(10) +
+                "--------------------------".PadRight(30) +
+                "---------------------".PadRight(10) +
+                "\n";
 
+            string gameObjectRows = null;
+
+            foreach (TravelerObject gameObject in inventory)
+            {
+                gameObjectRows +=
+                    $"{gameObject.Id}".PadRight(10) +
+                    $"{gameObject.Name}".PadRight(30) +
+                    $"{gameObject.Type}".PadRight(10) +
+                    Environment.NewLine;
+            }
+
+            messageBoxText += gameObjectRows;
 
             return messageBoxText;
         }
@@ -391,8 +411,7 @@ namespace TB_QuestGame
             {
                 gameObjectRows +=
                     $"{gameObject.Id}".PadRight(10) +
-                    $"{gameObject.Name}".PadLeft(30) + 
-                    Environment.NewLine;
+                    $"{gameObject.Name}".PadRight(30) + Environment.NewLine;
             }
 
             messageBoxText += gameObjectRows;

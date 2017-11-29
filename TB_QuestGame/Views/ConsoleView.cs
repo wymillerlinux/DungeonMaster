@@ -701,13 +701,13 @@ namespace TB_QuestGame
                         else
                         {
                             ClearInputBox();
-                            DisplayInputErrorMessage("It appears you may not inventory that object. Please try again.");
+                            DisplayInputErrorMessage("It appears you may not put that object in your inventory. Please try again.");
                         }
                     }
                     else
                     {
                         ClearInputBox();
-                        DisplayInputErrorMessage("It appears you entered an invalid game object id. Please try again.");
+                        DisplayInputErrorMessage("It appears you entered an invalid game object ID. Please try again.");
                     }
 
                 }
@@ -731,7 +731,7 @@ namespace TB_QuestGame
 
                 while (!validInventoryObjectId)
                 {
-                    GetInteger($"Enter the Id number of the object you wish to remove from your inventory: ", 0, 0, out travelerObjectId);
+                    GetInteger($"Enter the ID number of the object you wish to remove from your inventory: ", 0, 0, out travelerObjectId);
 
                     TravelerObject objectToPutDown = _gameTraveler.Inventory.FirstOrDefault(o => o.Id == travelerObjectId);
 
@@ -742,7 +742,7 @@ namespace TB_QuestGame
                     else
                     {
                         ClearInputBox();
-                        DisplayInputErrorMessage("It appears you entered the Id of an object not in the inventory. Please try again.");
+                        DisplayInputErrorMessage("It appears you entered the ID of an object not in the inventory. Please try again.");
                     }
                 }
             }

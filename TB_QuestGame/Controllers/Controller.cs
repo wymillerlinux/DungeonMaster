@@ -60,7 +60,7 @@ namespace TB_QuestGame
             
             //add game objects to start
             //_gameTraveler.Inventory.Add(_gameUniverse.GetGameObjectById(8) as TravelerObject);
-            _gameTraveler.Inventory.Add(_gameUniverse.GetGameObjectById(1) as TravelerObject);            
+            //_gameTraveler.Inventory.Add(_gameUniverse.GetGameObjectById(1) as TravelerObject);            
 
             Console.CursorVisible = false;
         }
