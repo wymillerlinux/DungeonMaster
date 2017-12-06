@@ -76,7 +76,7 @@ namespace TB_QuestGame
                 Accessible = false,
                 ExperiencePoints = 10
             },
-            
+
             new SpaceTimeLocation
             {
                 CommonName = "SECRET! (or Secret Room 1)",
@@ -88,12 +88,12 @@ namespace TB_QuestGame
                               " ",
                 GeneralContents = "Rust, Dust and Guts",
                 Accessible = false,
-                ExperiencePoints = 500  
+                ExperiencePoints = 500
             },
 
             new SpaceTimeLocation
             {
-                CommonName = "MOAR SECRET! (or Secret Room 2)",
+                CommonName = "SECRET! (or Secret Room 2)",
                 SpaceTimeLocationID = 6,
                 UniversalDate = 999999,
                 UniversalLocation = "SR2",

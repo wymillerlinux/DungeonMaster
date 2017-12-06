@@ -15,10 +15,11 @@ namespace TB_QuestGame
 
         public enum RaceType
         {
-            None,
-            Human,
-            Thorian,
-            Xantorian
+            White,
+            AfricanAmerican,
+            Asain,
+            Hispanic,
+            Other
         }
 
         #endregion
@@ -26,7 +27,7 @@ namespace TB_QuestGame
         #region FIELDS
 
         protected string _name;
-        protected int _spaceTimeLocationID;
+        protected int _spaceTimeLocationId;
         protected int _age;
         protected RaceType _race;
 
@@ -40,10 +41,10 @@ namespace TB_QuestGame
             set { _name = value; }
         }
 
-        public int SpaceTimeLocationID
+        public int SpaceTimeLocationId
         {
-            get { return _spaceTimeLocationID; }
-            set { _spaceTimeLocationID = value; }
+            get { return _spaceTimeLocationId; }
+            set { _spaceTimeLocationId = value; }
         }
 
         public int Age
@@ -71,7 +72,7 @@ namespace TB_QuestGame
         {
             _name = name;
             _race = race;
-            _spaceTimeLocationID = spaceTimeLocationID;
+            _spaceTimeLocationId = spaceTimeLocationID;
         }
 
         #endregion

@@ -45,7 +45,7 @@ namespace TB_QuestGame
                 Description = "By golly, it's a map! Must've been left when a previous traveler came by here.",
                 Type = TravelerObjectType.Information,
                 Value = 10,
-                CanInventory = false,
+                CanInventory = true,
                 IsConsumable = true,
                 IsVisible = true
             },

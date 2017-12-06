@@ -18,12 +18,12 @@ namespace TB_QuestGame
 
         #region FIELDS
 
-        private string _homePlanet;
         private int _experiencePoints;
         private int _health;
         private int _lives;
         private List<int> _spaceTimeLocationsVisited;
         private List<TravelerObject> _inventory;
+
 
         #endregion
 
@@ -53,19 +53,14 @@ namespace TB_QuestGame
             get { return _spaceTimeLocationsVisited; }
             set { _spaceTimeLocationsVisited = value; }
         }
-
-        public string HomePlanet
-        {
-            get { return _homePlanet; }
-            set { _homePlanet = value; }
-        }
-
+        
         public List<TravelerObject> Inventory
         {
             get { return _inventory; }
             set { _inventory = value; }
         }
-        
+
+
         #endregion
 
 

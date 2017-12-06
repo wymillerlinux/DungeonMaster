@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TheAionProject.S1_Starter")]
+[assembly: AssemblyTitle("TheAionProject.S4_Starter")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TheAionProject.S1_Starter")]
+[assembly: AssemblyProduct("TheAionProject.S4_Starter")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f03d0b1d-a1e7-41fb-8a70-2e60981b15f9")]
+[assembly: Guid("987992f8-3e04-4a2a-bdd6-f3f7b612cee1")]
 
 // Version information for an assembly consists of the following four values:
 //
