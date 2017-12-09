@@ -391,7 +391,7 @@ namespace TB_QuestGame
 
 			_gameTraveler.ExperiencePoints = 0;
 			_gameTraveler.Health = 100;
-			_gameTraveler.Lives = 1;
+			//_gameTraveler.Lives = 1;
 		}
 
 		/// <summary>
@@ -421,11 +421,23 @@ namespace TB_QuestGame
             }
 
             // unlocking next next when you pick a certain item
-            if (_gameTraveler.Inventory.Contains(_gameUniverse.GetGameObjectById(1)))
+            if (_gameTraveler.Inventory.Contains(_gameUniverse.GetGameObjectById(100)))
             {
                 SpaceTimeLocation spaceTimeLocation = _gameUniverse.GetSpaceTimeLocationById(2);
                 spaceTimeLocation.Accessible = true;
             }
+
+			if (_gameTraveler.Inventory.Contains(_gameUniverse.GetGameObjectById(101)))
+			{
+				SpaceTimeLocation spaceTimeLocation = _gameUniverse.GetSpaceTimeLocationById(5);
+				spaceTimeLocation.Accessible = true;
+			}
+
+			if (_gameUniverse.HasNpcBeenInteractedWith(2))
+			{
+				// code goes here
+			}
+
         }
 
 		#endregion

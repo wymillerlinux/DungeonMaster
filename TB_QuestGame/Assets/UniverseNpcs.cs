@@ -18,13 +18,12 @@ namespace TB_QuestGame
                 Id = 1,
                 Name = "Skeleton Joe",
                 SpaceTimeLocationId = 2,
-                Description = "A tall man in baggy pants with a red, pin stripped hat.",
+                Description = "A tall skeleton lying against a wall. You should take a look a your face.",
                 Messages = new List<string>
                 {
-                    "Greetings stranger. You are not from these parts as I can see.",
-                    "You will find what you are looking for with the Pink Gorilla.",
-                    "I once attended the Academy. They felt I needed more candles."
-                }
+                    "The skeleton doesn't want to talk. You shake the skeleton out of frustration. You suddenly realize a red key has fallen."
+                },
+                HasBeenInteractedWith = false
             },
 
             new Civilian
@@ -32,13 +31,12 @@ namespace TB_QuestGame
                 Id = 2,
                 Name = "Dead Corpse",
                 SpaceTimeLocationId = 1,
-                Description = "The lead developer of the Stratus Flux Capacitor.",
+                Description = "A dead corpse, face first on the sandstone. You don't know if you should touch it.",
                 Messages = new List<string>
                 {
-                    "I have to go. Good bye!",
-                    "It was always meant for good. We had no idea.",
-                    "Is that man following you?"
-                }
+                    "This corpse seems dead, apprently. After examining him a bit, you find a wallet full of cash and a yellow key."
+                },
+                HasBeenInteractedWith = false
             },
 
             new Civilian
@@ -46,7 +44,24 @@ namespace TB_QuestGame
                 Id = 3,
                 Name = "Skeleton Jim",
                 SpaceTimeLocationId = 2,
-                Description = "A Thorian diplomat dressed in traditional phlox and cords."
+                Description = "Another skeleton lying against a wall. This skeleton, however, seems short.",
+                HasBeenInteractedWith = false
+            },
+            
+            new Civilian
+            {
+                Id = 4,
+                Name = "Trash Can Carl",
+                SpaceTimeLocationId = 3,
+                Description = "",
+                Messages = new List<string>
+                {
+                    "Don't talk to me again, you rat. You'll never make out of here.",
+                    "Lemme say that again, you rotten deadbeat. You can open the secret door in this room by holding four items.",
+                    "Let me give you a hint. You can open the secret door in this room by holding four items.",
+                    "Hey, I can talk ya know!",
+                },
+                HasBeenInteractedWith = false
             }
         };
     }

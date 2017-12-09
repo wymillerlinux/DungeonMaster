@@ -13,7 +13,7 @@ namespace TB_QuestGame
         {
             new TravelerObject
             {
-                Id = 1,
+                Id = 100,
                 Name = "Loose Sandstone",
                 SpaceTimeLocationId = 1,
                 Description = "A small loose sandstone just lying about. How perculiar.",
@@ -26,10 +26,10 @@ namespace TB_QuestGame
 
             new TravelerObject
             {
-                Id = 2,
+                Id = 101,
                 Name = "Stone Turtle",
                 SpaceTimeLocationId = 2,
-                Description = "A small stone turtle is looking at you. Both you and the turtle are playing the staring game!",
+                Description = "A small stone turtle is looking at you blankly. Both you and the turtle are playing the staring game!",
                 Type = TravelerObjectType.Progress,
                 Value = 0,
                 CanInventory = true,
@@ -37,6 +37,19 @@ namespace TB_QuestGame
                 IsVisible = true
             },
 
+            new TravelerObject
+            {
+                Id = 102,
+                Name = "Yellow Key",
+                SpaceTimeLocationId = 2,
+                Description = "",
+                Type = TravelerObjectType.Progress,
+                Value = 0,
+                CanInventory = true,
+                IsConsumable = true,
+                IsVisible = false
+            },
+            
             new TravelerObject
             {
                 Id = 3,

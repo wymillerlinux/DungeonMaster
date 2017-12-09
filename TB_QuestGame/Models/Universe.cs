@@ -216,6 +216,20 @@ namespace TB_QuestGame
             }
         }
 
+
+        public bool HasNpcBeenInteractedWith(int Id)
+        {
+            Npc npc = GetNpcById(Id);
+            if (npc.HasBeenInteractedWith == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// return the current maximum ID for a SpaceTimeLocation object
         /// </summary>

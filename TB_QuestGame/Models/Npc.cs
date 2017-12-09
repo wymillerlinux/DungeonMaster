@@ -10,5 +10,6 @@ namespace TB_QuestGame
     {
         public abstract int Id { get; set; }
         public abstract string Description { get; set; }
+        public abstract bool HasBeenInteractedWith { get; set; }
     }
 }

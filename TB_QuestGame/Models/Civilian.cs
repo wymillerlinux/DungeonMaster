@@ -10,6 +10,7 @@ namespace TB_QuestGame
     {
         public override int Id { get; set; }
         public override string Description { get; set; }
+        public override bool HasBeenInteractedWith { get; set; }
         public List<string> Messages { get; set; }
 
         /// <summary>
