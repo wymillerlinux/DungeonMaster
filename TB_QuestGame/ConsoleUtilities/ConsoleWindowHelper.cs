@@ -126,6 +126,7 @@ namespace TB_QuestGame
                         }
                     }
                     // displaying bottom row
+                    // displaying bottom row
                     else if (row == height - 1)
                     {
                         if (column == 0)

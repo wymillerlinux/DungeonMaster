@@ -10,7 +10,7 @@ namespace TB_QuestGame
     {
         public override int Id { get; set; }
         public override string Description { get; set; }
-        public override bool HasBeenInteractedWith { get; set; }
+        public override bool InteractedWith { get; set; }
         public List<string> Messages { get; set; }
 
         /// <summary>
@@ -39,5 +39,6 @@ namespace TB_QuestGame
             int messageIndex = r.Next(0, Messages.Count());
             return Messages[messageIndex];
         }
+
     }
 }

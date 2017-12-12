@@ -39,11 +39,11 @@ namespace TB_QuestGame
 
 		public static Menu InitializeMission = new Menu()
 		{
-			MenuName = "InitializeMission",
-			MenuTitle = "Initialize Mission",
+			MenuName = "",
+			MenuTitle = "",
 			MenuChoices = new Dictionary<char, TravelerAction>()
 			{
-				{ '1', TravelerAction.Exit }
+				{ '0', TravelerAction.Exit }
 			}
 		};
 

@@ -115,7 +115,7 @@ namespace TB_QuestGame
             //
             foreach (GameObject gameObject in _gameObjects)
             {
-                if (gameObject.SpaceTimeLocationId == currentSpaceTimeLocation)
+                if (gameObject.SpaceTimeLocationId == currentSpaceTimeLocation && gameObject.Id >= 0)
                 {
                     gameObjectIds.Add(gameObject.Id);
                 }
@@ -149,7 +149,7 @@ namespace TB_QuestGame
             //
             foreach (GameObject gameObject in _gameObjects)
             {
-                if (gameObject.SpaceTimeLocationId == currentSpaceTimeLocation && gameObject is TravelerObject)
+                if (gameObject.SpaceTimeLocationId == currentSpaceTimeLocation && gameObject.Id >= 0 && gameObject is TravelerObject)
                 {
                     travelerObjectIds.Add(gameObject.Id);
                 }
@@ -207,20 +207,6 @@ namespace TB_QuestGame
         {
             SpaceTimeLocation spaceTimeLocation = GetSpaceTimeLocationById(spaceTimeLocationId);
             if (spaceTimeLocation.Accessible == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-
-        public bool HasNpcBeenInteractedWith(int Id)
-        {
-            Npc npc = GetNpcById(Id);
-            if (npc.HasBeenInteractedWith == true)
             {
                 return true;
             }
@@ -333,6 +319,34 @@ namespace TB_QuestGame
 
             return gameObjectToReturn;
         }
+        
+        public TravelerObject GetTravelerObjectById(int Id)
+        {
+            TravelerObject travelerObjectToReturn = null;
+
+            //
+            // run through the game object list and grab the correct one
+            //
+            foreach (TravelerObject travelerObject in _gameObjects)
+            {
+                if (travelerObject.Id == Id)
+                {
+                    travelerObjectToReturn = travelerObject;
+                }
+            }
+
+            //
+            // the specified ID was not found in the universe
+            // throw and exception
+            //
+            if (travelerObjectToReturn == null)
+            {
+                string feedbackMessage = $"The Traveler Object ID {Id} does not exist in the current Universe.";
+                throw new ArgumentException(Id.ToString(), feedbackMessage);
+            }
+
+            return travelerObjectToReturn;
+        }
 
         public List<GameObject> GetGameObjectsBySpaceTimeLocationId(int spaceTimeLocationId)
         {
@@ -343,7 +357,7 @@ namespace TB_QuestGame
             //
             foreach (GameObject gameObject in _gameObjects)
             {
-                if (gameObject.SpaceTimeLocationId == spaceTimeLocationId)
+                if (gameObject.SpaceTimeLocationId == spaceTimeLocationId && gameObject.Id >= 0)
                 {
                     gameObjects.Add(gameObject);
                 }
@@ -366,7 +380,7 @@ namespace TB_QuestGame
             //
             foreach (GameObject gameObject in _gameObjects)
             {
-                if (gameObject.SpaceTimeLocationId == spaceTimeLocationId && gameObject is TravelerObject)
+                if (gameObject.SpaceTimeLocationId == spaceTimeLocationId && gameObject.Id >= 0 && gameObject is TravelerObject)
                 {
                     travelerObjects.Add(gameObject as TravelerObject);
                 }
@@ -419,6 +433,19 @@ namespace TB_QuestGame
             }
 
             return npcs;
+        }
+        
+        public bool HasNpcBeenInteractedWith(int Id)
+        {
+            Npc npc = GetNpcById(Id);
+            if (npc.InteractedWith)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         #endregion

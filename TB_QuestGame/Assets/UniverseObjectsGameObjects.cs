@@ -13,7 +13,7 @@ namespace TB_QuestGame
         {
             new TravelerObject
             {
-                Id = 100,
+                Id = 1,
                 Name = "Loose Sandstone",
                 SpaceTimeLocationId = 1,
                 Description = "A small loose sandstone just lying about. How perculiar.",
@@ -26,87 +26,124 @@ namespace TB_QuestGame
 
             new TravelerObject
             {
-                Id = 101,
-                Name = "Stone Turtle",
+                Id = 2,
+                Name = "Stone Turtle Tom",
                 SpaceTimeLocationId = 2,
                 Description = "A small stone turtle is looking at you blankly. Both you and the turtle are playing the staring game!",
-                Type = TravelerObjectType.Progress,
+                Type = TravelerObjectType.Turtles,
                 Value = 0,
                 CanInventory = true,
-                IsConsumable = true,
+                IsConsumable = false,
                 IsVisible = true
             },
 
             new TravelerObject
             {
-                Id = 102,
+                Id = 3,
                 Name = "Yellow Key",
-                SpaceTimeLocationId = 2,
-                Description = "",
+                SpaceTimeLocationId = 1,
+                Description = "It's a yellow key, shaded yellow. Looks shiny.",
                 Type = TravelerObjectType.Progress,
                 Value = 0,
                 CanInventory = true,
-                IsConsumable = true,
-                IsVisible = false
+                IsConsumable = false,
+                IsVisible = true
             },
             
             new TravelerObject
             {
-                Id = 3,
+                Id = 4,
                 Name = "Map",
                 SpaceTimeLocationId = 1,
-                Description = "By golly, it's a map! Must've been left when a previous traveler came by here.",
+                Description = "By golly, it's a map! Must've been left when a previous traveler came by here. However, there's nothing but text that says 'MAP'. Lame.",
                 Type = TravelerObjectType.Information,
                 Value = 10,
                 CanInventory = true,
-                IsConsumable = true,
+                IsConsumable = false,
                 IsVisible = true
             },
 
             new TravelerObject
             {
-                Id = 4,
-                Name = "Norlan Document ND-3075",
-                SpaceTimeLocationId = 3,
+                Id = 5,
+                Name = "Red Key",
+                SpaceTimeLocationId = 2,
                 Description =
-                    "Memo: Origin Errata" + "/n" +
-                    "Universal Date: 378598" + "/n" +
-                    "/n" +
-                    "It appears a potential origin for the technology is based on Plenatia 5 in the Star Reach Galaxy.",
-                Type = TravelerObjectType.Information,
+                    "It's a key, shaded red. It looks like it's been on Mars.",
+                Type = TravelerObjectType.Progress,
                 Value = 0,
                 CanInventory = true,
                 IsConsumable = false,
                 IsVisible = true
             },
 
+            new TravelerObject
+            {
+                Id = 6,
+                Name = "Green Key",
+                SpaceTimeLocationId = 3,
+                Description =
+                    "It's a key, shaded green. It's looks it has been rotting here.",
+                Type = TravelerObjectType.Progress,
+                Value = 0,
+                CanInventory = true,
+                IsConsumable = false,
+                IsVisible = true
+            },
+
+            new TravelerObject
+            {
+                Id = 7,
+                Name = "Blue Key",
+                SpaceTimeLocationId = 6,
+                Description =
+                    "It's a key, shaded blue. It's looked like the ocean.",
+                Type = TravelerObjectType.Progress,
+                Value = 0,
+                CanInventory = true,
+                IsConsumable = false,
+                IsVisible = true
+            },
+            
+            
             new TravelerObject
             {
                 Id = 8,
-                Name = "Aion Tracker",
-                SpaceTimeLocationId = 0,
-                Description =
-                    "Standard issue device worn around wrist that allows for tracking and messaging.",
-                Type = TravelerObjectType.Information,
+                Name = "Stone Turtle Tim",
+                SpaceTimeLocationId = 3,
+                Description = "A small stone turtle is looking at you smugly. Both you and the turtle are playing the staring game!",
+                Type = TravelerObjectType.Turtles,
                 Value = 0,
                 CanInventory = true,
                 IsConsumable = false,
                 IsVisible = true
             },
-
+            
             new TravelerObject
             {
                 Id = 9,
-                Name = "RatPak 47",
-                SpaceTimeLocationId = 0,
-                Description =
-                    "Standard issue ration package contain nutrients for 72 hours.",
-                Type = TravelerObjectType.Information,
+                Name = "Stone Turtle Temmie",
+                SpaceTimeLocationId = 4,
+                Description = "A small stone turtle is looking at you nervously. Both you and the turtle are playing the staring game!",
+                Type = TravelerObjectType.Turtles,
                 Value = 0,
                 CanInventory = true,
-                IsConsumable = true,
+                IsConsumable = false,
                 IsVisible = true
-            }
+            },
+            
+            new TravelerObject
+            {
+                Id = 10,
+                Name = "Stone Turtle Teddy",
+                SpaceTimeLocationId = 2,
+                Description = "A small stone turtle is looking at you cautiously. Both you and the turtle are playing the staring game!",
+                Type = TravelerObjectType.Turtles,
+                Value = 0,
+                CanInventory = true,
+                IsConsumable = false,
+                IsVisible = true
+            },
         };
     }
 }

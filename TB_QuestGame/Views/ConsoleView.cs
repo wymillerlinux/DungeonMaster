@@ -246,15 +246,16 @@ namespace TB_QuestGame
 
 			Console.SetCursorPosition(0, 10);
 			string tabSpace = new String(' ', 35);
-			Console.WriteLine(tabSpace + @" _____ _              ___  _               ______          _           _   ");
-			Console.WriteLine(tabSpace + @"|_   _| |            / _ \(_)              | ___ \        (_)         | |  ");
-			Console.WriteLine(tabSpace + @"  | | | |__   ___   / /_\ \_  ___  _ __    | |_/ _ __ ___  _  ___  ___| |_ ");
-			Console.WriteLine(tabSpace + @"  | | | '_ \ / _ \  |  _  | |/ _ \| '_ \   |  __| '__/ _ \| |/ _ \/ __| __|");
-			Console.WriteLine(tabSpace + @"  | | | | | |  __/  | | | | | (_) | | | |  | |  | | | (_) | |  __| (__| |_ ");
-			Console.WriteLine(tabSpace + @"  \_/ |_| |_|\___|  \_| |_|_|\___/|_| |_|  \_|  |_|  \___/| |\___|\___|\__|");
-			Console.WriteLine(tabSpace + @"                                                         _/ |              ");
-			Console.WriteLine(tabSpace + @"                                                        |__/             ");
-
+			Console.WriteLine(tabSpace + @" ____                                                                                  __                   ");
+			Console.WriteLine(tabSpace + @"/\  _`\                                                      /'\_/`\                  /\ \__                ");
+			Console.WriteLine(tabSpace + @"\ \ \/\ \  __  __    ___      __      __    ___     ___     /\      \     __      ____\ \ ,_\    __   _ __  ");
+			Console.WriteLine(tabSpace + @" \ \ \ \ \/\ \/\ \ /' _ `\  /'_ `\  /'__`\ / __`\ /' _ `\   \ \ \__\ \  /'__`\   /',__\\ \ \/  /'__`\/\`'__\");
+			Console.WriteLine(tabSpace + @"  \ \ \_\ \ \ \_\ \/\ \/\ \/\ \L\ \/\  __//\ \L\ \/\ \/\ \   \ \ \_/\ \/\ \L\.\_/\__, `\\ \ \_/\  __/\ \ \/ ");
+			Console.WriteLine(tabSpace + @"   \ \____/\ \____/\ \_\ \_\ \____ \ \____\ \____/\ \_\ \_\   \ \_\\ \_\ \__/.\_\/\____/ \ \__\ \____\\ \_\ ");
+			Console.WriteLine(tabSpace + @"    \/___/  \/___/  \/_/\/_/\/___L\ \/____/\/___/  \/_/\/_/    \/_/ \/_/\/__/\/_/\/___/   \/__/\/____/ \/_/ ");
+			Console.WriteLine(tabSpace + @"                              /\____/                  ");
+			Console.WriteLine(tabSpace + @"                              \_/__/                   ");                                                                                 
+			
 			Console.SetCursorPosition(80, 25);
 			Console.Write("Press any key to continue or Esc to exit.");
 			keyPressed = Console.ReadKey();
@@ -277,7 +278,7 @@ namespace TB_QuestGame
 			ConsoleWindowControl.DisableResize();
 			ConsoleWindowControl.DisableMaximize();
 			ConsoleWindowControl.DisableMinimize();
-			Console.Title = "The Aion Project";
+			Console.Title = "Dungeon Master";
 
 			//
 			// set the default console window values
@@ -925,10 +926,15 @@ namespace TB_QuestGame
 
 			if (message == "")
 			{
-				message = "It appears this character has nothing to say. Please try again.";
+				message = "It appears this character has nothing to say.";
 			}
 
 			DisplayGamePlayScreen("Speak to Character", message, ActionMenu.NpcMenu, "");
+		}
+
+		public void DisplayGameCompleteScreen()
+		{
+			DisplayGamePlayScreen("Game Complete", Text.GameComplete(), ActionMenu.InitializeMission, "");
 		}
 
 		#endregion

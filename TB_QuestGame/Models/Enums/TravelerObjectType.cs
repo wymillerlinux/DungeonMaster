@@ -11,6 +11,7 @@ namespace TB_QuestGame
         Food,
         Medicine,
         Treasure,
+        Turtles,
         Information,
         Progress
     }

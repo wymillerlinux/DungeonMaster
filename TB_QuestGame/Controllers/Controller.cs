@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,6 +18,7 @@ namespace TB_QuestGame
 		private Traveler _gameTraveler;
 		private Universe _gameUniverse;
 		private SpaceTimeLocation _currentLocation;
+		private Npc _npc;
 		private bool _playingGame;
 
 		#endregion
@@ -399,6 +401,7 @@ namespace TB_QuestGame
 		/// </summary>
 		private void UpdateGameStatus()
 		{
+			
 			if (!_gameTraveler.HasVisited(_currentLocation.SpaceTimeLocationID))
 			{
 				//
@@ -420,26 +423,57 @@ namespace TB_QuestGame
                 Environment.Exit(0);
             }
 
-            // unlocking next next when you pick a certain item
-            if (_gameTraveler.Inventory.Contains(_gameUniverse.GetGameObjectById(100)))
+            // unlocking rooms/items when you pick a certain item
+			// turtles for days
+            if (_gameTraveler.Inventory.Contains(_gameUniverse.GetGameObjectById(2)))
             {
-                SpaceTimeLocation spaceTimeLocation = _gameUniverse.GetSpaceTimeLocationById(2);
+                SpaceTimeLocation spaceTimeLocation = _gameUniverse.GetSpaceTimeLocationById(6);
                 spaceTimeLocation.Accessible = true;
             }
-
-			if (_gameTraveler.Inventory.Contains(_gameUniverse.GetGameObjectById(101)))
+			
+			if (_gameTraveler.Inventory.Contains(_gameUniverse.GetGameObjectById(2)) && _gameTraveler.Inventory.Contains(_gameUniverse.GetGameObjectById(8)) && _gameTraveler.Inventory.Contains(_gameUniverse.GetGameObjectById(9)) && _gameTraveler.Inventory.Contains(_gameUniverse.GetGameObjectById(10)))
 			{
-				SpaceTimeLocation spaceTimeLocation = _gameUniverse.GetSpaceTimeLocationById(5);
+				SpaceTimeLocation spaceTimeLocation = _gameUniverse.GetSpaceTimeLocationById(7);
 				spaceTimeLocation.Accessible = true;
 			}
 
-			if (_gameUniverse.HasNpcBeenInteractedWith(2))
+			// keys of progression
+			if (_gameTraveler.Inventory.Contains(_gameUniverse.GetGameObjectById(3)))
 			{
-				// code goes here
+				SpaceTimeLocation spaceTimeLocation = _gameUniverse.GetSpaceTimeLocationById(2);
+				spaceTimeLocation.Accessible = true;
+
+				if (_gameTraveler.Inventory.Contains(_gameUniverse.GetGameObjectById(5)))
+				{
+					spaceTimeLocation = _gameUniverse.GetSpaceTimeLocationById(3);
+					spaceTimeLocation.Accessible = true;
+
+					if (_gameTraveler.Inventory.Contains(_gameUniverse.GetGameObjectById(6)))
+					{
+						spaceTimeLocation = _gameUniverse.GetSpaceTimeLocationById(4);
+						spaceTimeLocation.Accessible = true;
+						
+						if (_gameTraveler.Inventory.Contains(_gameUniverse.GetGameObjectById(7)))
+						{
+							spaceTimeLocation = _gameUniverse.GetSpaceTimeLocationById(5);
+							spaceTimeLocation.Accessible = true;
+						}
+					}
+				}
 			}
 
-        }
-
+			if (_gameTraveler.SpaceTimeLocationId == 5)
+			{
+				_gameConsoleView.DisplayGameCompleteScreen();
+			}
+			
+			// tried to interact with npc's to give me unlockable items but that didn't work out
+//			if (_gameUniverse.HasNpcBeenInteractedWith(1))
+//			{
+//				GameObject gameObject = _gameUniverse.GetGameObjectById(3);
+//				gameObject.SpaceTimeLocationId = 1;
+//			}
+		}
 		#endregion
 	}
 }

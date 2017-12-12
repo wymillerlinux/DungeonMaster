@@ -18,12 +18,12 @@ namespace TB_QuestGame
                 Id = 1,
                 Name = "Skeleton Joe",
                 SpaceTimeLocationId = 2,
-                Description = "A tall skeleton lying against a wall. You should take a look a your face.",
+                Description = "A tall skeleton lying against a wall. You should take a look at your face.",
                 Messages = new List<string>
                 {
                     "The skeleton doesn't want to talk. You shake the skeleton out of frustration. You suddenly realize a red key has fallen."
                 },
-                HasBeenInteractedWith = false
+                InteractedWith = false
             },
 
             new Civilian
@@ -36,7 +36,7 @@ namespace TB_QuestGame
                 {
                     "This corpse seems dead, apprently. After examining him a bit, you find a wallet full of cash and a yellow key."
                 },
-                HasBeenInteractedWith = false
+                InteractedWith = false
             },
 
             new Civilian
@@ -45,7 +45,7 @@ namespace TB_QuestGame
                 Name = "Skeleton Jim",
                 SpaceTimeLocationId = 2,
                 Description = "Another skeleton lying against a wall. This skeleton, however, seems short.",
-                HasBeenInteractedWith = false
+                InteractedWith = false
             },
             
             new Civilian
@@ -57,11 +57,11 @@ namespace TB_QuestGame
                 Messages = new List<string>
                 {
                     "Don't talk to me again, you rat. You'll never make out of here.",
-                    "Lemme say that again, you rotten deadbeat. You can open the secret door in this room by holding four items.",
-                    "Let me give you a hint. You can open the secret door in this room by holding four items.",
+                    "Lemme say that again, you rotten good for nothing deadbeat. You can open the secret door in this room by holding four items.",
+                    "Let me give you a hint for your stupid mind. You can open the secret door in this room by holding four items.",
                     "Hey, I can talk ya know!",
                 },
-                HasBeenInteractedWith = false
+                InteractedWith = false
             }
         };
     }

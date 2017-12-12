@@ -11,6 +11,8 @@ namespace TB_QuestGame
 	/// </summary>
 	public static class Text
 	{
+		private static Traveler _gameTraveler;
+		
 		public static List<string> HeaderText = new List<string>() { "Dungeon Master" };
 		public static List<string> FooterText = new List<string>() { "Entourage Software, 2017" };
 
@@ -33,25 +35,25 @@ namespace TB_QuestGame
             return messageBoxText;
         }
 
-        public static string InitialLocationInfo()
-		{
-			string messageBoxText =
-				"You are now in the Norlon Corporation research facility located in " +
-				"the city of Heraklion on the north coast of Crete. You have passed through " +
-				"heavy security and descended an unknown number of levels to the top secret " +
-				"research lab for the Aion Project.\n" +
-				" \n" +
-				"\tChoose from the menu options to proceed.\n";
-
-			return messageBoxText;
-		}
+//        public static string InitialLocationInfo()
+//		{
+//			string messageBoxText =
+//				"You are now in the Norlon Corporation research facility located in " +
+//				"the city of Heraklion on the north coast of Crete. You have passed through " +
+//				"heavy security and descended an unknown number of levels to the top secret " +
+//				"research lab for the Aion Project.\n" +
+//				" \n" +
+//				"\tChoose from the menu options to proceed.\n";
+//
+//			return messageBoxText;
+//		}
 
 		#region Initialize Mission Text
 
 		public static string InitializeMissionIntro()
 		{
 			string messageBoxText =
-				"Before you begin your mission we much gather your base data.\n" +
+				"" +
 				" \n" +
 				"You will be prompted for the required information. Please enter the information below.\n" +
 				" \n" +
@@ -202,7 +204,7 @@ namespace TB_QuestGame
 		public static string VisitedLocations(IEnumerable<SpaceTimeLocation> spaceTimeLocations)
 		{
 			string messageBoxText =
-				"Space-Time Locations Visited\n" +
+				"Room Locations Visited\n" +
 				" \n" +
 
 				//
@@ -231,7 +233,7 @@ namespace TB_QuestGame
 		public static string ListAllSpaceTimeLocations(IEnumerable<SpaceTimeLocation> spaceTimeLocations)
 		{
 			string messageBoxText =
-				"Space-Time Locations\n" +
+				"Room Locations\n" +
 				" \n" +
 
 				//
@@ -385,7 +387,7 @@ namespace TB_QuestGame
 			// display table name and column headers
 			//
 			string messageBoxText =
-				"Space-Time Location Objects\n" +
+				"Room Location Objects\n" +
 				" \n" +
 
 				//
@@ -430,11 +432,11 @@ namespace TB_QuestGame
 
 				if (travelerObject.CanInventory)
 				{
-					messageBoxText += " may be added to your inventory.";
+					messageBoxText += "may be added to your inventory.";
 				}
 				else
 				{
-					messageBoxText += " may not be added to your inventory.";
+					messageBoxText += "may not be added to your inventory.";
 				}
 			}
 			else
@@ -533,5 +535,20 @@ namespace TB_QuestGame
                 "if you like to play again.";
             return messageBoxText;
         }
-    }
+
+		public static string GameComplete()
+		{
+			string messageBoxText = "Finally, you have escaped the horrible dungeon! You scream in absoulte joy and happiness.\n\n" +
+
+//			if (_gameTraveler.Age <= 21)
+//			{
+//				messageBoxText += "However, you see the police with handcuffs. They take you to jail. That's not a good sign...";
+//			}
+
+			"\n\n\nYou have completed the game. You may press any key to continue back to the console.\n";
+			Console.ReadKey();
+			Environment.Exit(0);
+			return messageBoxText;
+		}
+	}
 }
