@@ -11,7 +11,7 @@ namespace TB_QuestGame
 	/// </summary>
 	public static class Text
 	{
-		private static Traveler _gameTraveler;
+		//private static Traveler _gameTraveler;
 		
 		public static List<string> HeaderText = new List<string>() { "Dungeon Master" };
 		public static List<string> FooterText = new List<string>() { "Entourage Software, 2017" };

@@ -22,8 +22,9 @@ namespace TB_QuestGame
                 UniversalLocation = "R1",
                 Description = "This appears that this the room you have started in. " +
                     "You see light from where you have fallen into. Looks like there's no turning back. " +
-                    "Also you see skeletons lying around. You can't tell if they are previous travelers or not. Spooky...\n" +
-                    "The room is square, all the walls are sandstone.\n " +
+                    "Also you see skeletons lying around. You can't tell if they are previous travelers or not. Spooky...",
+                GeneralContents =
+                 "The room is square, all the walls are sandstone.\n " +
                     "There is a door at the across from you which you cannot open. It appears a puzzle falls into your hands. " +
                     "You don't feel like you can solve puzzles after that fall you had. \n",
                 Accessible = true,
@@ -37,7 +38,8 @@ namespace TB_QuestGame
                 UniversalDate = 002,
                 UniversalLocation = "R2",
                 Description = "This room appears to filled to the brim with more sandstone. " +
-                    "You're very perplexed about the amount of sandstone is in this place.\n" + "Sandstone, of course. There's two doors, one to your left " +
+                    "You're very perplexed about the amount of sandstone is in this place.\n",
+                GeneralContents = "Sandstone, of course. There's two doors, one to your left " +
                 "and one across from you. The door in front of you has an upward arrow in the center of it." +
                 "The door on the left has a lock shaped symbol on the center of it.\n You also see stone " +
                 "turtles just sitting there on the floor. You don't pay any attention to it" +
@@ -53,7 +55,8 @@ namespace TB_QuestGame
                 UniversalDate = 003,
                 UniversalLocation = "R3",
                 Description = "Wishing the puzzles would stop, enter yet another room!\n Again, plum full " +
-                "of sandstone. By now, you're sick of sandstone.\n You facepalm and you continue to solve the next puzzle.\n" +
+                "of sandstone. By now, you're sick of sandstone.\n You facepalm and you continue to solve the next puzzle.",
+                GeneralContents =
                 "More sandstone walls. There's two doors, one on your right" +
                 "and one across from you.\n The door in front of you has an upward arrow in the center of it." +
                 "The door on the left has a lock shaped symbol on the center of it.\n You also see three pressure plates" +
@@ -70,7 +73,7 @@ namespace TB_QuestGame
                 UniversalLocation = "R4",
                 Description = "You see light behind the last door." +
                               "You can't wait for the puzzles to be done.",
-                GeneralContents = "",
+                GeneralContents = "More sandstone and one turtle",
                 Accessible = false,
                 ExperiencePoints = 10
             },
@@ -83,7 +86,7 @@ namespace TB_QuestGame
                 UniversalLocation = "S",
                 Description = "You see the wonderful landscape of Peru. You have beaten the game!",
                 GeneralContents = "Trees, trees and more trees...",
-                Accessible = true,
+                Accessible = false,
                 ExperiencePoints = 50
             },
 
